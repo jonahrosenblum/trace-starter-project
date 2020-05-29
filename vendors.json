@@ -1,0 +1,52 @@
+{
+	"Julia's Bakery": {
+		"yeast": {
+			"price": 2.01,
+			"quantity": 912
+		},
+		"sugar": {
+			"price": 0.24,
+			"quantity": 259
+		}
+	},
+	"Wind's Flour Mill": {
+		"flour": {
+			"price": 1.07,
+			"quantity": 909
+		},
+		"yeast": {
+			"price": 4.89,
+			"quantity": 172
+		}
+	},
+	"Breads R Us": {
+		"yeast": {
+			"price": 4.7,
+			"quantity": 685
+		},
+		"sugar": {
+			"price": 9.15,
+			"quantity": 449
+		}
+	},
+	"Cake and Bake": {
+		"flour": {
+			"price": 3.91,
+			"quantity": 11
+		},
+		"sugar": {
+			"price": 8.87,
+			"quantity": 65
+		}
+	},
+	"Marvelous Market": {
+		"yeast": {
+			"price": 8.53,
+			"quantity": 129
+		},
+		"sugar": {
+			"price": 1.21,
+			"quantity": 752
+		}
+	}
+}
