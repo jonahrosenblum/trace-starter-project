@@ -5,20 +5,20 @@ const request = require('request')
 const fs = require('fs')
 
 
-let suppliers, vendors
+let suppliersList, vendorsList
 
 fs.readFile('suppliers.json', 'utf8', function (err,data) {
   if (err) {
     return console.log(err)
   }
-  suppliers = JSON.parse(data)
+  suppliersList = JSON.parse(data)
 })
 
 fs.readFile('vendors.json', 'utf8', function (err,data) {
   if (err) {
     return console.log(err)
   }
-  vendors = JSON.parse(data)
+  vendorsList = JSON.parse(data)
 })
 
 
@@ -26,10 +26,9 @@ fs.readFile('vendors.json', 'utf8', function (err,data) {
 const PORT = 8081
 const HOST = '0.0.0.0'
 
-const queryAllVendors = async (vendors, ingredient, res) => {
-  // By making a request for each vendor seperately we can make multiple asynchronous requests
+const queryAllVendors = (vendors, ingredient, res) => {
   const vendorsInfo = []
-  await vendors.forEach( async (vendor) => {
+  vendors.forEach( (vendor) => {
     const vendorOptions = {
       url: `http://${HOST}:${PORT}/FoodVendor`,
       qs: {
@@ -37,19 +36,17 @@ const queryAllVendors = async (vendors, ingredient, res) => {
         'ingredientQuery': ingredient
       }
     }
-    await request(vendorOptions, (err, response, vendorBody) => {
-      //return vendorBody
-      vendorsInfo.push(vendorBody)
-      // if (vendorsInfo.length == vendors.length) {
-      //   flag = false
-      //   console.log('flag now false')
-      // }
-      // console.log(vendorsInfo.length, vendors.length)
-    })
-    console.log(vendorsInfo)
-  })
 
-  res.send(vendorsInfo)
+    request(vendorOptions, (err, response, vendorBody) => {
+      vendorsInfo.push(vendorBody)
+      // because we cannot 'return' from a callback, we will send a response
+      // once all of the asynchronous calls have completed
+      if (vendorsInfo.length == vendors.length) {
+        res.send(JSON.stringify(vendorsInfo))
+      }
+    })
+
+  })
 }
 
 const foodFinder = async (req, res) => {
@@ -61,21 +58,22 @@ const foodFinder = async (req, res) => {
     }
   }
 
-  await request(supplierOptions, (err, response, supplierBody) => {
-    const vendors = queryAllVendors(JSON.parse(supplierBody), ingredient, res)
+  request(supplierOptions, (err, response, supplierBody) => {
+    queryAllVendors(JSON.parse(supplierBody), ingredient, res)
   })
-
 }
 
 const foodSupplier = (req, res) => {
-  res.send(suppliers[req.query.ingredientQuery])
+  res.send(suppliersList[req.query.ingredientQuery])
 }
 
 const foodVendor = (req, res) => {
   const randomDelay = Math.floor(Math.random() * 1000)
+
   setTimeout(()=>{
-    const vendorInfo = vendors[req.query.vendorQuery][req.query.ingredientQuery]
+    const vendorInfo = vendorsList[req.query.vendorQuery][req.query.ingredientQuery]
     vendorInfo['vendorName'] = req.query.vendorQuery
+
     res.send(vendorInfo)
   }, randomDelay)
 }
@@ -89,4 +87,4 @@ app.get(`/FoodSupplier`, foodSupplier)
 app.get(`/FoodVendor`, foodVendor)
 
 app.listen(PORT, HOST)
-console.log(`Running on http://${HOST}:${PORT}`)
+console.log(`Running on http://${HOST}:${PORT}/FoodFinder`)
