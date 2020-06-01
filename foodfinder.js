@@ -2,35 +2,16 @@
 
 const express = require('express')
 const request = require('request')
-const fs = require('fs')
-
-
-let suppliersList, vendorsList
-
-fs.readFile('suppliers.json', 'utf8', function (err,data) {
-  if (err) {
-    return console.log(err)
-  }
-  suppliersList = JSON.parse(data)
-})
-
-fs.readFile('vendors.json', 'utf8', function (err,data) {
-  if (err) {
-    return console.log(err)
-  }
-  vendorsList = JSON.parse(data)
-})
-
 
 // Constants
-const PORT = 8081
+const PORT = 7500
 const HOST = '127.0.0.1'
 
 const queryAllVendors = (vendors, ingredient, res) => {
   const vendorsInfo = []
   vendors.forEach( (vendor) => {
     const vendorOptions = {
-      url: `http://${HOST}:${PORT}/FoodVendor`,
+      url: `http://${HOST}:${PORT + 2}/FoodVendor`,
       qs: {
         'vendorQuery': vendor,
         'ingredientQuery': ingredient
@@ -52,7 +33,7 @@ const queryAllVendors = (vendors, ingredient, res) => {
 const foodFinder = async (req, res) => {
   const ingredient = req.query.ingredient
   const supplierOptions = {
-    url: `http://${HOST}:${PORT}/FoodSupplier`,
+    url: `http://${HOST}:${PORT + 1}/FoodSupplier`,
     qs: {
       'ingredientQuery': ingredient
     }
@@ -63,28 +44,10 @@ const foodFinder = async (req, res) => {
   })
 }
 
-const foodSupplier = (req, res) => {
-  res.send(suppliersList[req.query.ingredientQuery])
-}
-
-const foodVendor = (req, res) => {
-  const randomDelay = Math.floor(Math.random() * 1000)
-
-  setTimeout(()=>{
-    const vendorInfo = vendorsList[req.query.vendorQuery][req.query.ingredientQuery]
-    vendorInfo['vendorName'] = req.query.vendorQuery
-
-    res.send(vendorInfo)
-  }, randomDelay)
-}
 
 const app = express()
 
 app.get('/FoodFinder', foodFinder)
-
-app.get(`/FoodSupplier`, foodSupplier)
-
-app.get(`/FoodVendor`, foodVendor)
 
 app.listen(PORT, HOST)
 console.log(`Running on http://${HOST}:${PORT}/FoodFinder`)

@@ -3,7 +3,7 @@ import json
 
 obj = {}
 suppliers ={'flour':[],'yeast':[],'sugar':[]}
-vendors = ["Julia's Bakery", "Wind's Flour Mill", "Breads R Us", "Cake and Bake", "Marvelous Market"]
+vendors = ["Julia's Bakery", "Wind's Flour Mill", "Breads R Us", "Cake Bake", "Marvelous Market"]
 for ven in vendors:
     obj[ven] = {'flour':{},'yeast':{}, 'sugar':{}}
     for ing in obj[ven]:
