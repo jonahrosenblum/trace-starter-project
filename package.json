@@ -1,15 +1,29 @@
 {
   "name": "trace-starter-project",
-  "version": "1.0",
+  "version": "1.0.0",
   "description": "",
   "author": "Jonah Rosenblum (jonahrosenblum@google.com)",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "prebuild": "tslint -c tslint.json -p tsconfig.json --fix",
+    "build": "tsc",
+    "prestart": "npm run build",
+    "start": "node foodfinder.ts"
   },
   "dependencies": {
+    "@opencensus/exporter-zipkin": "^0.0.20",
+    "@opencensus/nodejs": "^0.0.20",
+    "@opencensus/propagation-b3": "^0.0.20",
+    "@types/request": "^2.48.5",
     "express": "^4.17.1",
     "fs": "0.0.1-security",
-    "request": "^2.88.2"
+    "opencensus": "0.0.1-pre",
+    "request": "^2.88.2",
+    "typescript": "^3.9.3"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.6",
+    "@types/node": "^14.0.9",
+    "tslint": "^6.1.2"
   }
 }
