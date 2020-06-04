@@ -1,0 +1,18 @@
+{
+  "name": "trace-starter-project-FoodVendor",
+  "version": "1.0.0",
+  "description": "",
+  "author": "Jonah Rosenblum (jonahrosenblum@google.com)",
+  "main": "foodvendor.js",
+  "scripts": {
+    "start": "node foodvendor.js"
+  },
+  "dependencies": {
+    "@opencensus/exporter-zipkin": "^0.0.20",
+    "@opencensus/nodejs": "^0.0.20",
+    "@opencensus/propagation-b3": "^0.0.20",
+    "opencensus": "0.0.1-pre",
+    "express": "^4.17.1",
+    "fs": "0.0.1-security"
+  }
+}

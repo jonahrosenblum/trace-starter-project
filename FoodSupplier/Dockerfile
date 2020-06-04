@@ -1,6 +1,6 @@
 FROM node:12
 
-WORKDIR /usr/src/foodvendor
+WORKDIR /usr/src/foodsupplier
 
 COPY package*.json ./
 
@@ -8,6 +8,6 @@ RUN npm install
 
 COPY . .
 
-EXPOSE 7502
+EXPOSE 7501
 
 CMD [ "npm", "start" ]
