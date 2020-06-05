@@ -11,6 +11,6 @@ spec:
     spec:     # pod spec                  
       containers: 
       - name: foodfinder
-        image: gcr.io/phineasrt/hello-world-image:v1 # image we pushed
+        image: jonahrosenblum/foodfinder
         ports:
-        - containerPort: 3000
+        - containerPort: 7500
