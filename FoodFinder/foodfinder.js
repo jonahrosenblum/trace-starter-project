@@ -2,24 +2,24 @@
 
 // const path = require('path');
 // const cookieParser = require('cookie-parser');
-const tracing = require('@opencensus/nodejs');
-const propagation = require('@opencensus/propagation-b3');
+// const tracing = require('@opencensus/nodejs');
+// const propagation = require('@opencensus/propagation-b3');
 
-// Creates Zipkin exporter
-const zipkin = require('@opencensus/exporter-zipkin');
-const exporter = new zipkin.ZipkinTraceExporter({
-  url: 'http://localhost:9411/api/v2/spans',
-  serviceName: 'foodfinder'
-});
+// // Creates Zipkin exporter
+// const zipkin = require('@opencensus/exporter-zipkin');
+// const exporter = new zipkin.ZipkinTraceExporter({
+//   url: 'http://localhost:9411/api/v2/spans',
+//   serviceName: 'foodfinder'
+// });
 
-// NOTE: Please ensure that you start the tracer BEFORE initializing express app
-// Starts tracing and set sampling rate, exporter and propagation
-tracing.start({
-  exporter,
-  samplingRate: 1, // For demo purposes, always sample
-  propagation: new propagation.B3Format(),
-  logLevel: 1 // show errors, if any
-});
+// // NOTE: Please ensure that you start the tracer BEFORE initializing express app
+// // Starts tracing and set sampling rate, exporter and propagation
+// tracing.start({
+//   exporter,
+//   samplingRate: 1, // For demo purposes, always sample
+//   propagation: new propagation.B3Format(),
+//   logLevel: 1 // show errors, if any
+// });
 
 const express = require('express')
 const request = require('request')
@@ -82,5 +82,6 @@ app.use(express.urlencoded({ extended: false }));
 
 app.get('/FoodFinder', foodFinder)
 
-app.listen(PORT, HOST)
-console.log(`Running on http://${HOST}:${PORT}/FoodFinder`)
+app.get('/', (req, res) => {res.send('hello')})
+
+app.listen(PORT, () => {console.log(`Running FoodFinder`)})

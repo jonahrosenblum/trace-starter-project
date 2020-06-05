@@ -1,4 +1,4 @@
-apiVersion: apps/v1
+apiVersion: apps/v2
 kind: Deployment
 metadata:
   name: foodfinder-deployment
@@ -14,7 +14,7 @@ spec:
     spec:     # pod spec                  
       containers: 
       - name: foodfinder
-        image: gcr.io/jonah-starter-project/foodfinder:v1
+        image: gcr.io/jonah-starter-project/foodfinder:v2
         ports:
         - containerPort: 7500
         env:

@@ -1,8 +1,9 @@
-FROM node:12
+FROM node:10
 
-WORKDIR /usr/src/foodfinder
+RUN mkdir -p /usr/foodfinder
+WORKDIR /usr/foodfinder
 
-COPY package*.json ./
+COPY package.json ./
 
 RUN npm install
 
@@ -10,4 +11,4 @@ COPY . .
 
 EXPOSE 7500
 
-CMD [ "npm", "start" ]
+CMD [ "node", "foodfinder.js" ]
