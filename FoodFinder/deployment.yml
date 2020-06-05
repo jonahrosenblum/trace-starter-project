@@ -11,6 +11,6 @@ spec:
     spec:     # pod spec                  
       containers: 
       - name: foodfinder
-        image: jonahrosenblum/foodfinder
+        image: foodfinder-image
         ports:
         - containerPort: 7500
