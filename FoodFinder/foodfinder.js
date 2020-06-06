@@ -58,14 +58,16 @@ const foodFinder = async (req, res) => {
     return
   }
   const supplierOptions = {
-    url: `http://${HOST}:${PORT + 1}/FoodSupplier`,
+    url: `http://${'35.237.213.124'}:${80}/FoodSupplier`,
     qs: {
       'ingredientQuery': ingredient
     }
   }
 
+
   request(supplierOptions, (err, response, supplierBody) => {
     try {
+      console.log(supplierBody)
       queryAllVendors(JSON.parse(supplierBody), ingredient, res)
     }
     catch(e) {
@@ -82,6 +84,6 @@ app.use(express.urlencoded({ extended: false }));
 
 app.get('/FoodFinder', foodFinder)
 
-app.get('/', (req, res) => {res.send('hello')})
+app.get('/', (req, res) => {res.send('Go to `/FoodFinder` to search for ingredients')})
 
 app.listen(PORT, () => {console.log(`Running FoodFinder`)})

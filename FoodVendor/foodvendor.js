@@ -34,7 +34,6 @@ fs.readFile('vendors.json', 'utf8', function (err,data) {
 
 // Constants
 const PORT = 7502
-const HOST = '127.0.0.1'
 
 const foodVendor = (req, res) => {
   if (!req.query) {
@@ -67,5 +66,4 @@ app.get(`/FoodVendor`, foodVendor)
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.listen(PORT, HOST)
-console.log(`Running on http://${HOST}:${PORT}/FoodVendor`)
+app.listen(PORT, () => {console.log(`Running FoodVendor`}))
