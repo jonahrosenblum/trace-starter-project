@@ -66,4 +66,4 @@ app.get(`/FoodVendor`, foodVendor)
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.listen(PORT, () => {console.log(`Running FoodVendor`}))
+app.listen(PORT, () => {console.log(`Running FoodVendor`)})
