@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: foodvendor-deployment
+spec:
+  selector:
+    matchLabels:
+      app: foodvendor
+  replicas: 1
+  template:
+    metadata:
+      labels: # labels to select/identify the deployment
+        app: foodvendor
+    spec:     # pod spec                  
+      containers: 
+      - name: foodvendor
+        image: gcr.io/jonah-starter-project/foodvendor:v1
+        ports:
+        - containerPort: 7502
+        env:
+        - name: PORT
+          value: "7502"
+        - name: LOG_LEVEL
+          value: "info"
+        - name: NODE_ENV
+          value: "development"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: foodvendor-service
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+    targetPort: 7502
+    protocol: TCP
+  selector:
+    app: foodvendor
