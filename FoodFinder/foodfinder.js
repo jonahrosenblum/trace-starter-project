@@ -33,7 +33,7 @@ const queryAllVendors = async (vendors, ingredient, res) => {
   // It is possible for the promises to resolve in different orders but the list will always be the same
   vendors.forEach( (vendor) => {
     const vendorOptions = {
-      url: `http://${HOST}:${PORT + 2}/FoodVendor`,
+      url: `http://${'35.243.156.184'}:${80}/FoodVendor`,
       qs: {
         'vendorQuery': vendor,
         'ingredientQuery': ingredient
