@@ -1,8 +1,9 @@
-FROM node:12
+FROM node:10
 
-WORKDIR /usr/src/foodsupplier
+RUN mkdir -p /usr/foodfsupplier
+WORKDIR /usr/foodsupplier
 
-COPY package*.json ./
+COPY package.json ./
 
 RUN npm install
 
@@ -10,4 +11,4 @@ COPY . .
 
 EXPOSE 7501
 
-CMD [ "npm", "start" ]
+CMD [ "node", "foodsupplier.js" ]
