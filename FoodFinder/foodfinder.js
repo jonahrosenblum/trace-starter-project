@@ -20,6 +20,7 @@
 //   propagation: new propagation.B3Format(),
 //   logLevel: 1 // show errors, if any
 // });
+require('@google-cloud/trace-agent').start()
 
 const express = require('express')
 const request = require('request')

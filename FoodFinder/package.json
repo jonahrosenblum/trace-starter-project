@@ -8,11 +8,12 @@
     "start": "node foodfinder.js"
   },
   "dependencies": {
+    "@google-cloud/trace-agent": "^5.0.0",
     "@opencensus/exporter-zipkin": "^0.0.20",
     "@opencensus/nodejs": "^0.0.20",
     "@opencensus/propagation-b3": "^0.0.20",
+    "express": "^4.17.1",
     "opencensus": "0.0.1-pre",
-    "request": "^2.88.2",
-    "express": "^4.17.1"
+    "request": "^2.88.2"
   }
 }
