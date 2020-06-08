@@ -1,26 +1,10 @@
 'use strict'
 
-// const path = require('path');
-// const cookieParser = require('cookie-parser');
-// const tracing = require('@opencensus/nodejs');
-// const propagation = require('@opencensus/propagation-b3');
+const { NodeTracerProvider } = require('@opentelemetry/node');
 
-// // Creates Zipkin exporter
-// const zipkin = require('@opencensus/exporter-zipkin');
-// const exporter = new zipkin.ZipkinTraceExporter({
-//   url: 'http://localhost:9411/api/v2/spans',
-//   serviceName: 'foodfinder'
-// });
+const provider = new NodeTracerProvider();
 
-// // NOTE: Please ensure that you start the tracer BEFORE initializing express app
-// // Starts tracing and set sampling rate, exporter and propagation
-// tracing.start({
-//   exporter,
-//   samplingRate: 1, // For demo purposes, always sample
-//   propagation: new propagation.B3Format(),
-//   logLevel: 1 // show errors, if any
-// });
-require('@google-cloud/trace-agent').start()
+provider.register()
 
 const express = require('express')
 const request = require('request')
@@ -87,4 +71,4 @@ app.get('/FoodFinder', foodFinder)
 
 app.get('/', (req, res) => {res.send('Go to `/FoodFinder` to search for ingredients')})
 
-app.listen(PORT, () => {console.log(`Running FoodFinder`)})
+app.listen(PORT, () => {console.log(`Running FoodFinder!`)})
