@@ -2,6 +2,7 @@
 
 const { TraceExporter } = require('@google-cloud/opentelemetry-cloud-trace-exporter')
 const { NodeTracerProvider } = require('@opentelemetry/node')
+const { BatchSpanProcessor } = require('@opentelemetry/tracing');
 
 const exporter = new TraceExporter({})
 
