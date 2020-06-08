@@ -8,7 +8,7 @@ const { StackdriverTraceExporter } = require('@opentelemetry/exporter-stackdrive
 const exporter = new StackdriverTraceExporter({});
 
 //const exporter = new TraceExporter({projectId: 'jonah-starter-project'})
-const provider = new NodeTracerProvider({});
+const provider = new NodeTracerProvider({serviceName: 'foodfinder'});
 
 provider.addSpanProcessor(new BatchSpanProcessor(exporter))
 provider.register()
