@@ -1,21 +1,20 @@
 'use strict'
 
-const { TraceExporter } = require('@google-cloud/opentelemetry-cloud-trace-exporter')
+//const { TraceExporter } = require('@google-cloud/opentelemetry-cloud-trace-exporter')
 const { NodeTracerProvider } = require('@opentelemetry/node')
-const { SimpleSpanProcessor } = require('@opentelemetry/tracing');
+const { BatchSpanProcessor } = require('@opentelemetry/tracing');
+const { StackdriverTraceExporter } = require('@opentelemetry/exporter-stackdriver-trace')
+ 
+const exporter = new StackdriverTraceExporter({});
 
-const exporter = new TraceExporter({projectId: 'jonah-starter-project'})
+// const exporter = new TraceExporter({projectId: 'jonah-starter-project'})
 const provider = new NodeTracerProvider()
 
-provider.addSpanProcessor(new SimpleSpanProcessor(exporter))
+provider.addSpanProcessor(new BatchSpanProcessor(exporter))
 provider.register()
 
 const express = require('express')
 const request = require('request')
-
-// Constants
-const PORT = 7500
-const HOST = '127.0.0.1'
 
 const queryAllVendors = async (vendors, ingredient, res) => {
   const vendorsInfo = []
