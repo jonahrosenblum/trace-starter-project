@@ -1,23 +1,5 @@
 'use strict'
 
-// const tracing = require('@opencensus/nodejs');
-// const propagation = require('@opencensus/propagation-b3');
-
-// // Creates Zipkin exporter
-// const zipkin = require('@opencensus/exporter-zipkin');
-// const exporter = new zipkin.ZipkinTraceExporter({
-//   url: 'http://localhost:9411/api/v2/spans',
-//   serviceName: 'foodvendor'
-// });
-
-// // NOTE: Please ensure that you start the tracer BEFORE initializing express app
-// // Starts tracing and set sampling rate, exporter and propagation
-// tracing.start({
-//   exporter,
-//   samplingRate: 1, // For demo purposes, always sample
-//   propagation: new propagation.B3Format(),
-//   logLevel: 1 // show errors, if any
-// });
 require('@google-cloud/trace-agent').start()
 
 const express = require('express')
