@@ -50,5 +50,5 @@ app.use(express.urlencoded({ extended: false }));
 
 app.get(`/FoodSupplier`, foodSupplier)
 
-app.listen(PORT, () => {console.log('Running FoodSupplier')})
+app.listen(PORT, () => {console.log('Running FoodSupplier!')})
 //console.log(`Running on http://${HOST}:${PORT}/FoodSupplier`)
