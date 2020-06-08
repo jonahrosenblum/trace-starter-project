@@ -14,7 +14,7 @@ spec:
     spec:     # pod spec                  
       containers: 
       - name: foodsupplier
-        image: gcr.io/jonah-starter-project/foodsupplier:v2
+        image: gcr.io/jonah-starter-project/foodsupplier:v3
         ports:
         - containerPort: 7501
         env:
