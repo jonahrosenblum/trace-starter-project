@@ -14,7 +14,7 @@ spec:
     spec:     # pod spec                  
       containers: 
       - name: foodfinder
-        image: gcr.io/jonah-starter-project/foodfinder:v13
+        image: gcr.io/jonah-starter-project/foodfinder:v14
         ports:
         - containerPort: 7500
         env:
