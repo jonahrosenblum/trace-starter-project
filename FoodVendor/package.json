@@ -8,6 +8,7 @@
     "start": "node foodvendor.js"
   },
   "dependencies": {
+    "@google-cloud/trace-agent": "^5.0.0",
     "@opencensus/exporter-zipkin": "^0.0.20",
     "@opencensus/nodejs": "^0.0.20",
     "@opencensus/propagation-b3": "^0.0.20",
