@@ -1,7 +1,5 @@
 'use strict'
 
-require('@google-cloud/trace-agent').start()
-
 const express = require('express')
 const fs = require('fs')
 
