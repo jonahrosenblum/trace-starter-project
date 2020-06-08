@@ -5,7 +5,7 @@ const { NodeTracerProvider } = require('@opentelemetry/node')
 const { BatchSpanProcessor } = require('@opentelemetry/tracing');
 const { StackdriverTraceExporter } = require('@opentelemetry/exporter-stackdriver-trace')
  
-const exporter = new StackdriverTraceExporter();
+const exporter = new StackdriverTraceExporter({});
 
 //const exporter = new TraceExporter({projectId: 'jonah-starter-project'})
 const provider = new NodeTracerProvider({
