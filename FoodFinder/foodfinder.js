@@ -16,6 +16,8 @@ provider.register()
 const express = require('express')
 const request = require('request')
 
+const PORT = 7500
+
 const queryAllVendors = async (vendors, ingredient, res) => {
   const vendorsInfo = []
   // It is possible for the promises to resolve in different orders but the list will always be the same
