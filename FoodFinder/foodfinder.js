@@ -1,13 +1,10 @@
 'use strict'
 
-//const { TraceExporter } = require('@google-cloud/opentelemetry-cloud-trace-exporter')
 const { NodeTracerProvider } = require('@opentelemetry/node')
 const { BatchSpanProcessor } = require('@opentelemetry/tracing');
 const { StackdriverTraceExporter } = require('@opentelemetry/exporter-stackdriver-trace')
  
 const exporter = new StackdriverTraceExporter({});
-
-//const exporter = new TraceExporter({projectId: 'jonah-starter-project'})
 const provider = new NodeTracerProvider({serviceName: 'foodfinder'});
 
 provider.addSpanProcessor(new BatchSpanProcessor(exporter))

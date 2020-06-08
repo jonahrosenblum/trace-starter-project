@@ -1,5 +1,15 @@
 'use strict'
 
+const { NodeTracerProvider } = require('@opentelemetry/node')
+const { BatchSpanProcessor } = require('@opentelemetry/tracing');
+const { StackdriverTraceExporter } = require('@opentelemetry/exporter-stackdriver-trace')
+ 
+const exporter = new StackdriverTraceExporter({});
+const provider = new NodeTracerProvider({serviceName: 'foodvendor'});
+
+provider.addSpanProcessor(new BatchSpanProcessor(exporter))
+provider.register()
+
 const express = require('express')
 const fs = require('fs')
 

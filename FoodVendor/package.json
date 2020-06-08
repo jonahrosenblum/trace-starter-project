@@ -8,6 +8,12 @@
     "start": "node foodvendor.js"
   },
   "dependencies": {
+    "@opentelemetry/exporter-stackdriver-trace": "^0.4.0",
+    "@opentelemetry/node": "^0.8.3",
+    "@opentelemetry/plugin-express": "^0.8.0",
+    "@opentelemetry/plugin-http": "^0.8.3",
+    "@opentelemetry/plugin-https": "^0.8.3",
+    "@opentelemetry/tracing": "^0.8.3",
     "express": "^4.17.1",
     "fs": "0.0.1-security"
   }
