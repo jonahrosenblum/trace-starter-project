@@ -4,8 +4,7 @@ const { TraceExporter } = require('@google-cloud/opentelemetry-cloud-trace-expor
 const { NodeTracerProvider } = require('@opentelemetry/node')
 const { BatchSpanProcessor } = require('@opentelemetry/tracing');
 
-const exporter = new TraceExporter({})
-
+const exporter = new TraceExporter({projectId: 'jonah-starter-project'})
 const provider = new NodeTracerProvider()
 
 provider.addSpanProcessor(new BatchSpanProcessor(exporter))
