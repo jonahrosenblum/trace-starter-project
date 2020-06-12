@@ -1,0 +1,14 @@
+{
+  "name": "trace-starter-project-client",
+  "version": "1.0.0",
+  "description": "",
+  "author": "Jonah Rosenblum (jonahrosenblum@google.com)",
+  "main": "client.js",
+  "scripts": {
+    "start": "node client.js"
+  },
+  "dependencies": {
+    "request": "^2.88.2",
+    "request-promise": "^4.2.5"
+  }
+}

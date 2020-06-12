@@ -20,7 +20,7 @@ const queryAllVendors = async (vendors, ingredient, res) => {
   // It is possible for the promises to resolve in different orders but the list will always be the same
   vendors.forEach( (vendor) => {
     const vendorOptions = {
-      url: `http://${'35.243.156.184'}:${80}/FoodVendor`,
+      url: `http://35.243.156.184/FoodVendor`,
       qs: {
         'vendorQuery': vendor,
         'ingredientQuery': ingredient
@@ -45,20 +45,18 @@ const foodFinder = async (req, res) => {
     return
   }
   const supplierOptions = {
-    url: `http://${'35.237.213.124'}:${80}/FoodSupplier`,
+    url: `http://35.237.213.124/FoodSupplier`,
     qs: {
       'ingredientQuery': ingredient
     }
   }
 
-
   request(supplierOptions, (err, response, supplierBody) => {
     try {
-      console.log(supplierBody)
       queryAllVendors(JSON.parse(supplierBody), ingredient, res)
     }
     catch(e) {
-      res.send('Error:' + e.message)
+      res.send('Error: ' + e.message)
     }
   })
 }
